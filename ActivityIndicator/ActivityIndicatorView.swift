@@ -111,36 +111,3 @@ extension CGSize {
 }
 
 
-//extension Int: Identifiable {
-//    public var id:Int {
-//        return self
-//    }
-//}
-
-//extension ActivityIndicatorView where ID == DataSource.Element.ID, Content: View, DataSource.Element : Identifiable {
-//
-
-//
-//    func ensambleForIdentifier() -> some View {
-//        GeometryReader { geometry in
-//        ForEach(self.dataSource) { element in
-//            PetalView(content: self.contentBuilder(element),
-//                      duration: self.duration,
-//                      positionNumber: self.getIndex(element),
-//                      numberOfPetals: self.numberOfPetals,
-//                      scale: 1.2,
-//                      animationParameter: self.$animationParameter)
-//                .rotationEffect(self.angle(for: self.getIndex(element)))
-//                .position(self.petalPosition(for: self.getIndex(element), size: geometry.size))
-//           }
-//        }
-//    }
-//
-//
-////    func getIntIndex(element: DataSource.Element) -> Int {
-////        let enumeration = dataSource.enumerated()
-////        return enumeration.first(where: { (index, value) -> Bool in
-////            value.id == element.id
-////        })!.0
-////    }
-//}
