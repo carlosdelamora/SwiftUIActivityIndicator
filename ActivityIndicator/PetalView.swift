@@ -9,20 +9,34 @@
 import SwiftUI
 import Combine
 
-struct PetalView: View {
+struct PetalView<Content: View >: View {
     var duration: Double
     var positionNumber: Int
     var numberOfPetals: Int
-    var scale: CGFloat = 2.0
-    //var viewForNumber:(Int) -> some View
+    var scale: CGFloat
+    var contentView: Content
     
     @Binding var animationParameter: Int
 
     var body: some View {
-        DisplayView()
+        contentView
             .opacity(self.opacity(for: positionNumber))
             .scaleEffect(self.scale(for: positionNumber))
             .animation(.linear(duration: duration))
+    }
+    
+    init(content: Content,
+         duration: Double,
+         positionNumber: Int,
+         numberOfPetals: Int = 12,
+         scale: CGFloat = 1.0,
+         animationParameter: Binding<Int>) {
+        contentView = content
+        self.duration = duration
+        self.positionNumber = positionNumber
+        self.numberOfPetals = numberOfPetals
+        self.scale = scale
+        self._animationParameter = animationParameter
     }
     
     private func opacity(for i: Int) -> Double {
@@ -38,7 +52,8 @@ struct PetalView: View {
 struct PetalView_Previews: PreviewProvider {
     
     static var previews: some View {
-        PetalView(duration: 0.3,
+        PetalView(content:DisplayView(),
+                  duration: 0.3,
                   positionNumber: 12,
                   numberOfPetals: 12,
                   animationParameter: Binding.constant(10))

@@ -8,28 +8,54 @@
 
 import SwiftUI
 
-struct ActivityIndicatorView: View {
-    let numberOfPetals = 12
+struct ActivityIndicatorView< DataSource: RandomAccessCollection, ID, Content> : View where ID == DataSource.Element.ID, Content: View, DataSource.Element : Identifiable{
+    
     var duration = 0.1
+    var diameter: CGFloat
+    private var numberOfPetals: Int
+    private let dataSource: DataSource
+    private let contentBuilder: (DataSource.Element) -> Content
     @State var animationParameter = 0
     var body: some View {
-        GeometryReader { geometry in
-            ForEach(0..<self.numberOfPetals) { i in
-                PetalView(duration: self.duration,
-                          positionNumber: i,
-                          numberOfPetals: self.numberOfPetals,
-                          animationParameter: self.$animationParameter)
-                    .rotationEffect(self.angle(for:i))
-                    .position(self.petalPosition(for: i, size: geometry.size))
-            }
-        }.frame(width: 200, height: 200)
+        makeContent()
         .onAppear {
             self.changeRotation()
         }
     }
     
+    init(diameter: CGFloat = 120,
+         dataSource: DataSource,
+         contentBuilder: @escaping (DataSource.Element) -> Content) {
+        self.diameter = diameter
+        self.dataSource = dataSource
+        self.contentBuilder = contentBuilder
+        self.numberOfPetals = dataSource.count
+    }
+    
+    func makeContent() -> some View {
+        GeometryReader { geometry in
+            ForEach(self.dataSource) { element in
+                PetalView(content: self.contentBuilder(element),
+                          duration: self.duration,
+                          positionNumber: self.getIntIndex(element: element),
+                          numberOfPetals: self.numberOfPetals,
+                          scale: 1.2,
+                          animationParameter: self.$animationParameter)
+                    .rotationEffect(self.angle(for: self.getIntIndex(element: element)))
+                    .position(self.petalPosition(for: self.getIntIndex(element: element), size: geometry.size))
+            }
+        }.frame(width: diameter, height: diameter)
+    }
+    
     func angle(for i: Int)-> Angle {
         return Angle(radians: 2*Double(-i)*Double.pi/Double(numberOfPetals))
+    }
+    
+    func getIntIndex(element: DataSource.Element) -> Int {
+        let enumeration = dataSource.enumerated()
+        return enumeration.first(where: { (index, value) -> Bool in
+            value.id == element.id
+        })!.0
     }
     
     private func scale(_ size: CGSize) -> CGFloat {
@@ -56,7 +82,9 @@ struct ActivityIndicatorView: View {
 
 struct ActivityIndicatorView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityIndicatorView()
+        ActivityIndicatorView<Range<Int>, Int, DisplayView >(dataSource: 0..<13) { _ in
+            DisplayView()
+        }
     }
 }
 
@@ -68,4 +96,15 @@ extension CGSize {
     var largestSide: CGFloat {
         return max(width, height)
     }
+}
+
+
+extension Int: Identifiable {
+    public var id:Int {
+        return self
+    }
+}
+
+extension ActivityIndicatorView {
+    
 }
