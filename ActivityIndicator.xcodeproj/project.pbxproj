@@ -15,7 +15,9 @@
 		CA09C644242BB5A800300E32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA09C642242BB5A800300E32 /* LaunchScreen.storyboard */; };
 		CA09C64C242BBCBC00300E32 /* PetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA09C64B242BBCBC00300E32 /* PetalView.swift */; };
 		CA09C654242BD8E100300E32 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA09C653242BD8E100300E32 /* ActivityIndicatorView.swift */; };
-		CAC4FF992433F60F00D3D68F /* DisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4FF982433F60F00D3D68F /* DisplayView.swift */; };
+		CA0E13332474800E0052394D /* TextPetalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E13322474800E0052394D /* TextPetalContent.swift */; };
+		CA0E13352474853D0052394D /* ImagePetalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E13342474853D0052394D /* ImagePetalContent.swift */; };
+		CAC4FF992433F60F00D3D68F /* SandardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4FF982433F60F00D3D68F /* SandardContent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +31,9 @@
 		CA09C645242BB5A800300E32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA09C64B242BBCBC00300E32 /* PetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetalView.swift; sourceTree = "<group>"; };
 		CA09C653242BD8E100300E32 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
-		CAC4FF982433F60F00D3D68F /* DisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayView.swift; sourceTree = "<group>"; };
+		CA0E13322474800E0052394D /* TextPetalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPetalContent.swift; sourceTree = "<group>"; };
+		CA0E13342474853D0052394D /* ImagePetalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePetalContent.swift; sourceTree = "<group>"; };
+		CAC4FF982433F60F00D3D68F /* SandardContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandardContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 		CA09C636242BB5A600300E32 /* ActivityIndicator */ = {
 			isa = PBXGroup;
 			children = (
+				CA0E133124747A620052394D /* PetalContent */,
 				CA09C637242BB5A600300E32 /* AppDelegate.swift */,
 				CA09C639242BB5A600300E32 /* SceneDelegate.swift */,
 				CA09C63B242BB5A600300E32 /* ContentView.swift */,
@@ -71,7 +76,6 @@
 				CA09C645242BB5A800300E32 /* Info.plist */,
 				CA09C63F242BB5A800300E32 /* Preview Content */,
 				CA09C653242BD8E100300E32 /* ActivityIndicatorView.swift */,
-				CAC4FF982433F60F00D3D68F /* DisplayView.swift */,
 			);
 			path = ActivityIndicator;
 			sourceTree = "<group>";
@@ -82,6 +86,16 @@
 				CA09C640242BB5A800300E32 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CA0E133124747A620052394D /* PetalContent */ = {
+			isa = PBXGroup;
+			children = (
+				CAC4FF982433F60F00D3D68F /* SandardContent.swift */,
+				CA0E13322474800E0052394D /* TextPetalContent.swift */,
+				CA0E13342474853D0052394D /* ImagePetalContent.swift */,
+			);
+			path = PetalContent;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,8 +172,10 @@
 				CA09C638242BB5A600300E32 /* AppDelegate.swift in Sources */,
 				CA09C654242BD8E100300E32 /* ActivityIndicatorView.swift in Sources */,
 				CA09C63A242BB5A600300E32 /* SceneDelegate.swift in Sources */,
-				CAC4FF992433F60F00D3D68F /* DisplayView.swift in Sources */,
+				CAC4FF992433F60F00D3D68F /* SandardContent.swift in Sources */,
+				CA0E13332474800E0052394D /* TextPetalContent.swift in Sources */,
 				CA09C63C242BB5A600300E32 /* ContentView.swift in Sources */,
+				CA0E13352474853D0052394D /* ImagePetalContent.swift in Sources */,
 				CA09C64C242BBCBC00300E32 /* PetalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

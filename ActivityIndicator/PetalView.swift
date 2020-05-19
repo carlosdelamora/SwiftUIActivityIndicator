@@ -52,7 +52,7 @@ struct PetalView<Content: View >: View {
 struct PetalView_Previews: PreviewProvider {
     
     static var previews: some View {
-        PetalView(content:DisplayView(),
+        PetalView(content:StandardPetalContent(),
                   duration: 0.3,
                   positionNumber: 12,
                   numberOfPetals: 12,

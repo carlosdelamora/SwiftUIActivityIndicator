@@ -7,65 +7,75 @@
 //
 
 import SwiftUI
+import Combine
 
-struct ActivityIndicatorView< DataSource: RandomAccessCollection, ID, Content> : View where ID == DataSource.Element.ID, Content: View, DataSource.Element : Identifiable{
+struct ActivityIndicatorView <Data: RandomAccessCollection, Content> : View where  Content: View, Data.Element: Hashable {
     
     var duration = 0.1
-    var diameter: CGFloat
-    private var numberOfPetals: Int
-    private let dataSource: DataSource
-    private let contentBuilder: (DataSource.Element) -> Content
-    @State var animationParameter = 0
-    var body: some View {
-        makeContent()
-        .onAppear {
-            self.changeRotation()
-        }
-    }
+   
     
-    init(diameter: CGFloat = 120,
-         dataSource: DataSource,
-         contentBuilder: @escaping (DataSource.Element) -> Content) {
+    init(diameter: CGFloat = 110,
+         animationScale: CGFloat = 1.0,
+         dataSource: Data,
+         contentBuilder: @escaping (Data.Element) -> Content) {
         self.diameter = diameter
         self.dataSource = dataSource
         self.contentBuilder = contentBuilder
         self.numberOfPetals = dataSource.count
+        self.animationScale = animationScale
+        self.getIndex = { element in
+                    let enumeration = dataSource.enumerated()
+                    return enumeration.first(where: { (index, value) -> Bool in
+                        value == element
+                    })!.0
+        }
     }
     
-    func makeContent() -> some View {
-        GeometryReader { geometry in
-            ForEach(self.dataSource) { element in
-                PetalView(content: self.contentBuilder(element),
-                          duration: self.duration,
-                          positionNumber: self.getIntIndex(element: element),
-                          numberOfPetals: self.numberOfPetals,
-                          scale: 1.2,
-                          animationParameter: self.$animationParameter)
-                    .rotationEffect(self.angle(for: self.getIntIndex(element: element)))
-                    .position(self.petalPosition(for: self.getIntIndex(element: element), size: geometry.size))
-            }
-        }.frame(width: diameter, height: diameter)
-    }
+    private let animationScale: CGFloat
+    private let diameter: CGFloat
+    private var numberOfPetals: Int
+    private let dataSource: Data
+    private let contentBuilder: (Data.Element) -> Content
+    private let getIndex: (Data.Element) -> Int
     
+    //private let ensambledView:
+    @State var animationParameter = 0
+    var body: some View {
+        ensamble()
+        .onAppear {
+            self.changeRotation()
+        }
+    }
+   
     func angle(for i: Int)-> Angle {
         return Angle(radians: 2*Double(-i)*Double.pi/Double(numberOfPetals))
     }
     
-    func getIntIndex(element: DataSource.Element) -> Int {
-        let enumeration = dataSource.enumerated()
-        return enumeration.first(where: { (index, value) -> Bool in
-            value.id == element.id
-        })!.0
+    
+    
+    func ensamble() -> some View {
+        GeometryReader { geometry in
+            ForEach(self.dataSource, id: \.self) { element in
+                PetalView(content: self.contentBuilder(element),
+                          duration: self.duration,
+                          positionNumber: self.getIndex(element),
+                          numberOfPetals: self.numberOfPetals,
+                          scale: self.animationScale,
+                          animationParameter: self.$animationParameter)
+                    .rotationEffect(self.angle(for: self.getIndex(element)))
+                    .position(self.petalPosition(for: self.getIndex(element), size: geometry.size))
+            }
+        }.frame(width: diameter, height: diameter)
     }
     
-    private func scale(_ size: CGSize) -> CGFloat {
+    private func scaleToFit(_ size: CGSize) -> CGFloat {
         let theta = 2*CGFloat.pi/CGFloat(numberOfPetals)
         let value = 2*tan(theta/2.0)
         return 0.5*value/(1 + value)*size.smallestSide/size.largestSide
     }
     
     private func petalPosition(for i: Int, size: CGSize) -> CGPoint {
-        let radius = (1 - scale(size))*size.smallestSide/2 - 20
+        let radius = (1 - scaleToFit(size))*size.smallestSide/2 - 20
         let angle = self.angle(for: i)
         let xPosition = radius*CGFloat(cos(angle.radians))
         let yPosition = radius*CGFloat(sin(angle.radians))
@@ -82,8 +92,10 @@ struct ActivityIndicatorView< DataSource: RandomAccessCollection, ID, Content> :
 
 struct ActivityIndicatorView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityIndicatorView<Range<Int>, Int, DisplayView >(dataSource: 0..<13) { _ in
-            DisplayView()
+        ActivityIndicatorView(dataSource: 0...7) { element in
+            //DisplayView()
+            //StandardContent()
+            ImagePetalContent()
         }
     }
 }
@@ -99,12 +111,36 @@ extension CGSize {
 }
 
 
-extension Int: Identifiable {
-    public var id:Int {
-        return self
-    }
-}
+//extension Int: Identifiable {
+//    public var id:Int {
+//        return self
+//    }
+//}
 
-extension ActivityIndicatorView {
-    
-}
+//extension ActivityIndicatorView where ID == DataSource.Element.ID, Content: View, DataSource.Element : Identifiable {
+//
+
+//
+//    func ensambleForIdentifier() -> some View {
+//        GeometryReader { geometry in
+//        ForEach(self.dataSource) { element in
+//            PetalView(content: self.contentBuilder(element),
+//                      duration: self.duration,
+//                      positionNumber: self.getIndex(element),
+//                      numberOfPetals: self.numberOfPetals,
+//                      scale: 1.2,
+//                      animationParameter: self.$animationParameter)
+//                .rotationEffect(self.angle(for: self.getIndex(element)))
+//                .position(self.petalPosition(for: self.getIndex(element), size: geometry.size))
+//           }
+//        }
+//    }
+//
+//
+////    func getIntIndex(element: DataSource.Element) -> Int {
+////        let enumeration = dataSource.enumerated()
+////        return enumeration.first(where: { (index, value) -> Bool in
+////            value.id == element.id
+////        })!.0
+////    }
+//}

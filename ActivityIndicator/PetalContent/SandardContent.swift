@@ -1,5 +1,5 @@
 //
-//  DisplayView.swift
+//  StandardPetalContent.swift
 //  ActivityIndicator
 //
 //  Created by Carlos De la Mora on 3/31/20.
@@ -8,16 +8,8 @@
 
 import SwiftUI
 
-struct DisplayView: View {
+struct StandardPetalContent: View {
     var body: some View {
-        //Text("🌸").rotationEffect(Angle(radians: Double.pi/2)).scaleEffect(2.0/3.0)
-//        switch numberId % 2 {
-//        case 0:
-//           return Text("😡").rotationEffect(Angle(radians: Double.pi/2)).scaleEffect(2.0/3.0)
-//        default:
-//          return  Text("😀").rotationEffect(Angle(radians: Double.pi/2)).scaleEffect(2.0/3.0)
-//        }
-        
         GeometryReader { geometry in
             Color
                 .red
@@ -29,6 +21,6 @@ struct DisplayView: View {
 
 struct DisplayView_Previews: PreviewProvider {
     static var previews: some View {
-        DisplayView()
+        StandardPetalContent()
     }
 }
