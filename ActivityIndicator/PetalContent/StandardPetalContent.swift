@@ -14,7 +14,7 @@ struct StandardPetalContent: View {
             Color
                 .red
                 .cornerRadius(min(geometry.size.width, geometry.size.height))
-                .frame(width: 20, height: 6)
+                .frame(width: 6, height: 6)
         }
     }
 }
