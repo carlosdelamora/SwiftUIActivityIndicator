@@ -13,7 +13,6 @@ struct ActivityIndicatorView <Data: RandomAccessCollection, Content> : View wher
     
     var duration = 0.1
    
-    
     init(diameter: CGFloat = 110,
          animationScale: CGFloat = 1.0,
          dataSource: Data,
@@ -92,10 +91,10 @@ struct ActivityIndicatorView <Data: RandomAccessCollection, Content> : View wher
 
 struct ActivityIndicatorView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityIndicatorView(dataSource: 0...7) { element in
+        ActivityIndicatorView(animationScale: 1.5, dataSource: 0...7) { element in
             //DisplayView()
-            //StandardContent()
-            ImagePetalContent()
+            StandardPetalContent()
+            //ImagePetalContent()
         }
     }
 }

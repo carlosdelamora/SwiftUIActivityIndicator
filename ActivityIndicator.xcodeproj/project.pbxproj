@@ -17,7 +17,8 @@
 		CA09C654242BD8E100300E32 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA09C653242BD8E100300E32 /* ActivityIndicatorView.swift */; };
 		CA0E13332474800E0052394D /* TextPetalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E13322474800E0052394D /* TextPetalContent.swift */; };
 		CA0E13352474853D0052394D /* ImagePetalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E13342474853D0052394D /* ImagePetalContent.swift */; };
-		CAC4FF992433F60F00D3D68F /* SandardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4FF982433F60F00D3D68F /* SandardContent.swift */; };
+		CA0E13372474A3E40052394D /* ActivityGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E13362474A3E40052394D /* ActivityGallery.swift */; };
+		CAC4FF992433F60F00D3D68F /* StandardPetalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4FF982433F60F00D3D68F /* StandardPetalContent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +34,8 @@
 		CA09C653242BD8E100300E32 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		CA0E13322474800E0052394D /* TextPetalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPetalContent.swift; sourceTree = "<group>"; };
 		CA0E13342474853D0052394D /* ImagePetalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePetalContent.swift; sourceTree = "<group>"; };
-		CAC4FF982433F60F00D3D68F /* SandardContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandardContent.swift; sourceTree = "<group>"; };
+		CA0E13362474A3E40052394D /* ActivityGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityGallery.swift; sourceTree = "<group>"; };
+		CAC4FF982433F60F00D3D68F /* StandardPetalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardPetalContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				CA09C645242BB5A800300E32 /* Info.plist */,
 				CA09C63F242BB5A800300E32 /* Preview Content */,
 				CA09C653242BD8E100300E32 /* ActivityIndicatorView.swift */,
+				CA0E13362474A3E40052394D /* ActivityGallery.swift */,
 			);
 			path = ActivityIndicator;
 			sourceTree = "<group>";
@@ -91,7 +94,7 @@
 		CA0E133124747A620052394D /* PetalContent */ = {
 			isa = PBXGroup;
 			children = (
-				CAC4FF982433F60F00D3D68F /* SandardContent.swift */,
+				CAC4FF982433F60F00D3D68F /* StandardPetalContent.swift */,
 				CA0E13322474800E0052394D /* TextPetalContent.swift */,
 				CA0E13342474853D0052394D /* ImagePetalContent.swift */,
 			);
@@ -171,8 +174,9 @@
 			files = (
 				CA09C638242BB5A600300E32 /* AppDelegate.swift in Sources */,
 				CA09C654242BD8E100300E32 /* ActivityIndicatorView.swift in Sources */,
+				CA0E13372474A3E40052394D /* ActivityGallery.swift in Sources */,
 				CA09C63A242BB5A600300E32 /* SceneDelegate.swift in Sources */,
-				CAC4FF992433F60F00D3D68F /* SandardContent.swift in Sources */,
+				CAC4FF992433F60F00D3D68F /* StandardPetalContent.swift in Sources */,
 				CA0E13332474800E0052394D /* TextPetalContent.swift in Sources */,
 				CA09C63C242BB5A600300E32 /* ContentView.swift in Sources */,
 				CA0E13352474853D0052394D /* ImagePetalContent.swift in Sources */,

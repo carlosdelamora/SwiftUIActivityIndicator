@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ImagePetalContent: View {
     var body: some View {
-        Image("icon").clipShape(Circle()).scaleEffect(0.5).rotationEffect(Angle(radians: .pi/2))
+        Image("icon").clipShape(Circle()).scaleEffect(0.3).rotationEffect(Angle(radians: .pi/2))
     }
 }
 

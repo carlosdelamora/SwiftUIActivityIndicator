@@ -56,7 +56,7 @@ struct PetalView_Previews: PreviewProvider {
                   duration: 0.3,
                   positionNumber: 12,
                   numberOfPetals: 12,
-                  animationParameter: Binding.constant(10))
+                  animationParameter: Binding.constant(1))
     }
 }
 
